@@ -1,0 +1,1 @@
+# Json-Cropper-GoogleApi
