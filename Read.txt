@@ -1,0 +1,18 @@
+Paso 1:
+Abrir el index.html que esta en esta misma rama.
+
+Paso 2: 
+
+Todo el programa esta funcional, pero en la marte de ubicacion use la api de google maps, si no te funcionara tienes que hacer unos pequeños
+cambios,
+ 
+a) ir a esta pagina https://cloud.google.com/maps-platform ir a este link
+b) hacerte una cuenta si no tienes
+c) tienes que activar las apis de Api de javaScript de Maps y Api places for web
+d) ir a este link https://developers.google.com/maps/documentation/javascript/adding-a-google-map#key, te dice como crear un api key
+
+Paso 3:
+El api key tienes que ponerlo en ese lugar
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap">
+</script>

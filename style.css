@@ -1,0 +1,173 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav {
+    flex-wrap: inherit !important;
+}
+
+#info {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ccc;
+    color: #ccc;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#badMessage {
+    border-radius: 10px;
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+    background: #ec306f;
+    border: 1px solid rgb(224, 40, 40);
+}
+
+#imgCrop {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.contUplo {
+    margin: 25px;
+}
+
+.upload {
+    background: #3d9bff;
+    padding: 10px;
+    color: white;
+    transition: .5s;
+}
+
+.texta {
+    height: 100px !important;
+    min-height: 100px;
+    max-height: 300px;
+}
+
+.upload:hover {
+    background: #0071eb;
+    transition: .5s;
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 5px solid #007bff !important;
+}
+
+.active {
+    color: #007bff !important;
+}
+
+.active:hover {
+    color: #007bff !important;
+}
+
+a {
+    color: #ccc !important;
+}
+
+a:hover {
+    color: #563D7C !important;
+}
+
+#stringifyData {
+    width: 70%;
+    height: 300px;
+    margin-top: 16px;
+    margin-top: 1rem;
+    padding: 8px 16px;
+    padding: 0.5rem 1rem;
+    background: #f9fdfe;
+    border: 1px solid #cdcfcf;
+    overflow-x: scroll;
+}
+
+#map {
+    margin-bottom: 50px;
+    width: 90%;
+    height: 500px;
+}
+
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+#infowindow-content .title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+}
+
+#map #infowindow-content {
+    display: inline;
+}
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+}
+
+#pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+}
+
+.pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+}
+
+.pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.latLong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+#target {
+    width: 345px;
+}
+
+.actions {
+    background: rgb(238, 238, 238);
+    padding: 10px;
+    width: 100%;
+}
+
+@media (max-width: 730px) {
+    .nav {
+        flex-wrap: wrap !important;
+    }
+    .nav-tabs .nav-link {
+        width: 100%;
+    }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/cropper/cropper.css">
+    <link rel="icon" type="image/png" href="./favico.ico" />
+    <title>Test</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-notification-tab" data-toggle="tab" href="#nav-notification" role="tab" aria-controls="nav-notification" aria-selected="true">
+                <h5>Paso 1: Notificación Segmentada</h5>
+                <p>Formulario en formato stringify de JSON </p>
+            </a>
+            <a class="nav-item nav-link" id="nav-image-tab" data-toggle="tab" href="#nav-image" role="tab" aria-controls="nav-image" aria-selected="false">
+                <h5>Paso 2: Subir imagen</h5>
+                <p>Poder subir una imagen y recortarla</p>
+            </a>
+            <a class="nav-item nav-link" id="nav-ubication-tab" data-toggle="tab" href="#nav-ubication" role="tab" aria-controls="nav-ubication" aria-selected="false">
+                <h5>Paso 3: Seleccion de ubicación</h5>
+                <p>Mapa de google con buscador y marcador</p>
+            </a>
+            <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">
+                <h5>Paso 4: Mostrar resultados</h5>
+                <p>Muestra los datos de los sliders anteriores</p>
+            </a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <!-- Notification -->
+        <div class="tab-pane fade show active" id="nav-notification" role="tabpanel" aria-labelledby="nav-notification-tab">
+            <div class="container mt-5 mb-5">
+                <h2>Formulario con validaciones</h2>
+                <div class="row">
+                    <div class="col-6 ">
+                        <form id="validateForm" method="POST" onsubmit="return false" class="needs-validation" novalidate>
+                            <div class="form-group ">
+                                <label for="dateField">Fecha</label>
+                                <input name="date" class="form-control" id="dateField" type="date" placeholder="Fecha" required="">
+                                <div class="invalid-feedback">
+                                    Datos requeridos
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="phoneField">Teléfono</label>
+                                <input name="tel" class="form-control" id="phoneField" type="tel" placeholder="Teléfono" onkeypress="solonumeros(event);">
+                            </div>
+                            <div class="form-group ">
+                                <label for="urlField">Url de contacto</label>
+                                <input name="url" class="form-control" id="urlField" type="url" placeholder="Url de contacto">
+                            </div>
+                            <div class="form-group">
+                                <label for="ageField">Rango de edad</label>
+                                <select name="ageField" class="custom-select" id="ageField" required>
+                                                <option selected value="">Rango de edad</option>
+                                                <option value="18-30">18-30</option>
+                                                <option value="31-43">31-43</option>
+                                                <option value="44-99">44-99</option>
+                                            </select>
+                                <div class="invalid-feedback">
+                                    Datos requeridos
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="genderField">Genero</label>
+                                <select class="custom-select" id="genderField" name="genderField" required>
+                                                <option selected value="">Genero</option>
+                                                    <option value="Male">Masculino</option>
+                                                    <option value="female">Femenino</option>
+                                                    <option value="other">Otro</option>
+                                                </select>
+                                <div class="invalid-feedback">
+                                    Datos requeridos
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="titleField">Titulo</label>
+                                <input name="titleField" class="form-control" id="titleField" type="text" placeholder="Titulo" required maxlength="50">
+                                <div class="invalid-feedback">
+                                    Datos requeridos
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="infoField">Información</label>
+                                <textarea name="infoField" class="form-control texta" id="infoField" type="text" placeholder="Información" required maxlength="100" cols="30" rows="10"></textarea>
+                                <div class="invalid-feedback">
+                                    Datos requeridos
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Mostrar datos</button>
+                        </form>
+                    </div>
+                    <div class="col-6 ">
+                        <h3>Formato JSON</h3>
+                        <div id="stringifyData">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Crop Image -->
+        <div class="tab-pane fade" id="nav-image" role="tabpanel" aria-labelledby="nav-image-tab">
+            <div class="container mt-5 mb-5">
+                <h2>Subir imagen y recortar</h2>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="viewport">
+                            <div id="imgBox">
+
+                            </div>
+                            <div id="info">
+                                <p>Agregue una imagen para empezar</p>
+                            </div>
+
+                            <form>
+                                <label for="image" class="contUplo"><span class="upload">Cargar imagen</span></label>
+                                <input type="file" class="" name="img" onchange="readURL(this);" id="image" style="display: none;">
+                            </form>
+                            <button type="button" id="crop_button" onclick="cropImage()" class="btn btn-outline-primary w-50">Recortar</button>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <h3>Imagen recortada</h3>
+                        <div id="cropResult">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-ubication" role="tabpanel" aria-labelledby="nav-ubication-tab">
+            <div class="container">
+                <h2>Mapa con buscador y marcadores</h2>
+                <div class="row">
+                    <div class="col-6">
+                        <input id="pac-input" type="text" class="form-control mt-5 mb-5" placeholder="Buscar lugar">
+                    </div>
+                    <div class="col-5 latLong">
+                        <input id="lat" class="form-control" type="text" disabled placeholder="Latitud">
+                        <input id="long" class="form-control" type="text" disabled placeholder="Longitud">
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+            <div class="container">
+                <div id="metric_results">
+                    <h2>Resultado de las actividades</h2>
+                    <div id="badMessage">Para ver los resultados debes terminar todos los pasos y dar un click en el boton terminar</div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class=" btn-group" role="group">
+                <button class="btn btn-secondary" id="prev">Anterior</button>
+                <button class="btn btn-secondary" id="next" onclick="btnMove()"> Siguiente</button>
+            </div>
+            <div class="navitgation btn-group" role="group">
+                <button class="btn btn-primary" id="finish" onclick="addTable()">Terminar</button>
+                <button class="btn btn-danger" id="cancel">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./assets/cropper/cropper.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9sjOMVLBnVJxXU9FeS7QId0TIQ5gnDsk&libraries=places&callback=initAutocomplete" async defer></script>
+</body>
+</body>
+
+</html>
